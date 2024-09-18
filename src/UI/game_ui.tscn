@@ -23,6 +23,7 @@ offset_bottom = 23.0
 text = "0"
 
 [node name="TopMiddle" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -46,6 +47,7 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 text = "Warning"
 
 [node name="CableTypesButtons" type="HBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -68,6 +70,7 @@ button_group = SubResource("ButtonGroup_2kd3i")
 text = "Fiber"
 
 [node name="NewNodesButtons" type="HBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -88,6 +91,7 @@ layout_mode = 2
 text = "New House"
 
 [node name="CursorModeButtons" type="HBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0

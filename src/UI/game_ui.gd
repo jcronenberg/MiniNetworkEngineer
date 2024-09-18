@@ -5,7 +5,7 @@ var _elapsed_time: float = 0.0 # TODO in the future this should probably be requ
 
 
 func _physics_process(delta: float) -> void:
-	%FPSCounter.text = str(Engine.get_frames_per_second())
+	%FPSCounter.text = "FPS: %s" % str(Engine.get_frames_per_second())
 	_elapsed_time += delta
 	%Timer.text = str(round(_elapsed_time))
 

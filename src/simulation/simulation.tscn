@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://g7prnvkrx7xb"]
+[gd_scene load_steps=6 format=3 uid="uid://g7prnvkrx7xb"]
 
 [ext_resource type="Script" path="res://src/simulation/simulation.gd" id="1_f7ilh"]
 [ext_resource type="Script" path="res://addons/map_camera_2d/map_camera_2d.gd" id="2_kqftb"]
+[ext_resource type="PackedScene" uid="uid://dvc25xr8ai8ih" path="res://src/3d/test.tscn" id="5_r8rdj"]
 [ext_resource type="PackedScene" uid="uid://c75ksq31jylr" path="res://src/endpoints/wan_port.tscn" id="5_tgaow"]
 [ext_resource type="Script" path="res://src/proc_gen/city_gen.gd" id="9_wiy4f"]
 
@@ -12,24 +13,101 @@ script = ExtResource("1_f7ilh")
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 script = ExtResource("2_kqftb")
+zoom_min = 0.05
+zoom_max = 1.0
 pan_speed = 1000.0
 pan_margin = 0.0
 drag_inertia = 0.0
 
+[node name="CameraMiddlePoint" type="ColorRect" parent="Camera"]
+visible = false
+offset_right = 1.0
+offset_bottom = 1.0
+
 [node name="Parks" type="Node2D" parent="."]
 unique_name_in_owner = true
+visible = false
 
 [node name="Cables" type="Node2D" parent="."]
 unique_name_in_owner = true
+visible = false
 
 [node name="Switches" type="Node2D" parent="."]
 unique_name_in_owner = true
+visible = false
 
 [node name="Houses" type="Node2D" parent="."]
 unique_name_in_owner = true
+visible = false
 
 [node name="WANPort" parent="." instance=ExtResource("5_tgaow")]
 unique_name_in_owner = true
 
 [node name="CityGen" type="Node2D" parent="."]
+visible = false
+position = Vector2(100, 0)
 script = ExtResource("9_wiy4f")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="Test" parent="SubViewport" instance=ExtResource("5_r8rdj")]
+
+[node name="ViewportSprite" type="Sprite2D" parent="."]
+z_index = -1
+
+[node name="RefPolys" type="Node2D" parent="."]
+visible = false
+
+[node name="Polygon2D" type="Polygon2D" parent="RefPolys"]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-5, -5, 5, -5, 5, 5, -5, 5)
+
+[node name="Polygon2D11" type="Polygon2D" parent="RefPolys"]
+position = Vector2(160, 0)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-5, -5, 5, -5, 5, 5, -5, 5)
+
+[node name="Polygon2D2" type="Polygon2D" parent="RefPolys"]
+position = Vector2(0, 20)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-5, -5, 5, -5, 5, 5, -5, 5)
+
+[node name="Polygon2D3" type="Polygon2D" parent="RefPolys"]
+position = Vector2(0, 40)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-5, -5, 5, -5, 5, 5, -5, 5)
+
+[node name="Polygon2D4" type="Polygon2D" parent="RefPolys"]
+position = Vector2(0, 60)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-5, -5, 5, -5, 5, 5, -5, 5)
+
+[node name="Polygon2D5" type="Polygon2D" parent="RefPolys"]
+position = Vector2(0, 80)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-5, -5, 5, -5, 5, 5, -5, 5)
+
+[node name="Polygon2D6" type="Polygon2D" parent="RefPolys"]
+position = Vector2(0, 100)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-5, -5, 5, -5, 5, 5, -5, 5)
+
+[node name="Polygon2D7" type="Polygon2D" parent="RefPolys"]
+position = Vector2(0, 120)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-5, -5, 5, -5, 5, 5, -5, 5)
+
+[node name="Polygon2D8" type="Polygon2D" parent="RefPolys"]
+position = Vector2(0, 140)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-5, -5, 5, -5, 5, 5, -5, 5)
+
+[node name="Polygon2D9" type="Polygon2D" parent="RefPolys"]
+position = Vector2(0, 160)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-5, -5, 5, -5, 5, 5, -5, 5)
+
+[node name="Polygon2D10" type="Polygon2D" parent="RefPolys"]
+position = Vector2(0, 180)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-5, -5, 5, -5, 5, 5, -5, 5)

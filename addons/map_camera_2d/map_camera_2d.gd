@@ -43,6 +43,16 @@ func _ready() -> void:
 	get_viewport().size_changed.connect(clamp_offset)
 
 
+var _previous_offset: Vector2 = Vector2.ZERO
+var _previous_zoom: Vector2 = Vector2.ZERO
+func _check_camera_changed() -> void:
+	if _previous_offset != offset or _previous_zoom != zoom:
+		_previous_offset = offset
+		_previous_zoom = zoom
+		Global.camera_changed.emit(offset, zoom)
+		$CameraMiddlePoint.position = offset - Vector2(5, 5)
+
+
 func _process(delta: float) -> void:
 	if _drag_movement == Vector2.ZERO:
 		clamp_offset(_pan_direction * pan_speed * delta / zoom)
@@ -53,6 +63,8 @@ func _process(delta: float) -> void:
 
 		if _drag_movement.length_squared() < 0.01:
 			set_process(false)
+
+	_check_camera_changed()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -134,6 +146,7 @@ func _unhandled_input(event: InputEvent) -> void:
 							_tween_offset.kill()
 
 						offset = Vector2.ZERO
+						_check_camera_changed()
 
 
 ## After changing the node's global position, set [code]offset = offset[/code] then call this to stay within limits.
@@ -161,6 +174,8 @@ func clamp_offset(relative: Vector2 = Vector2()) -> void:
 
 	if relative != Vector2.ZERO:
 		offset += relative
+
+	_check_camera_changed()
 
 
 func _set_pan_direction(value: Vector2) -> void:
@@ -227,6 +242,8 @@ func _change_zoom(factor: float, with_cursor: bool = true) -> void:
 			clamp_offset(relative)
 		else:
 			_set_zoom_level(clamped_zoom)
+
+	_check_camera_changed()
 
 
 func _set_zoom_level(value: Vector2) -> void:

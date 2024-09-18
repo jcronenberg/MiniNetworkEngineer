@@ -1,5 +1,7 @@
 extends Node
 
+signal camera_changed(position: Vector2, zoom: Vector2)
+
 enum CursorModes {
 	CABLE,
 }

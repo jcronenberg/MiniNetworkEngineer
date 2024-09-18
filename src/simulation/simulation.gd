@@ -23,6 +23,29 @@ var _network_sim: NetworkSim = NetworkSim.new()
 func _ready() -> void:
 	_network_sim.add_wan(%WANPort)
 	_network_sim.connect("houses_allocated", _on_network_sim_houses_allocated)
+	#for _i in 1000:
+		#var new_house: Node2D = $House.duplicate()
+		#new_house.global_position = Vector2(randf_range(-5000, 5000), randf_range(-5000, 5000))
+		#add_child(new_house)
+	$SubViewport.size = DisplayServer.window_get_size()
+	Global.connect("camera_changed", _on_camera_changed)
+
+
+func _on_camera_changed(camera_pos: Vector2, zoom: Vector2) -> void:
+	#$SubViewport.size = DisplayServer.window_get_size()
+	#$SubViewport.size_2d_override = get_viewport_rect().size
+	$SubViewport.size = DisplayServer.window_get_size()
+	var texture: ViewportTexture = $SubViewport.get_texture()
+	$ViewportSprite.texture = texture
+	$ViewportSprite.global_position = camera_pos
+	$ViewportSprite.scale = get_viewport_rect().size / Vector2(DisplayServer.window_get_size().x, DisplayServer.window_get_size().y) / zoom
+	#$ViewportSprite.scale = Vector2.ONE * zoom
+	#print(DisplayServer.window_get_size())
+	#DisplayServer.window_set_size(Vector2i(1000, 900))
+	#print($ViewportSprite.scale)
+	#print(get_viewport_rect().size)
+	#print(zoom)
+	$SubViewport/Test.set_camera_pos(camera_pos, zoom)
 
 
 func _physics_process(_delta: float) -> void:
